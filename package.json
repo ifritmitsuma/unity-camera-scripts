@@ -1,0 +1,13 @@
+{
+    "name": "unity-camera-scripts",
+    "version": "0.0.1",
+    "displayName": "Camera Scripts",
+    "description": "Unity Camera Scripts",
+    "keywords": [
+      "Movement"
+    ],
+    "author": {
+      "name": "Miguel Cunha",
+      "email": "magccunha@gmail.com"
+    }
+}
