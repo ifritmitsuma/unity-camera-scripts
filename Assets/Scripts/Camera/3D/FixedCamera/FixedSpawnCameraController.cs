@@ -7,26 +7,36 @@ public class FixedSpawnCameraController : MonoBehaviour
 
     public List<FixedCameraSpawnInfo> spawns;
 
+    private Camera cam;
 
-    public void SwitchCameraPosition(Collider collider, bool forward)
+    void Start() {
+        cam = GetComponent<Camera>();
+    }
+
+    public void SwitchCameraPosition(GameObject gameObject, bool forward)
     {
-        FixedCameraSpawnInfo spawn = spawns.Find(x => x.spawnTrigger == collider);
+        FixedCameraSpawnInfo spawn = spawns.Find(x => x.spawnTrigger == gameObject);
 
         transform.SetPositionAndRotation(forward ? spawn.forwardSpawnPosition : spawn.backwardSpawnPosition, Quaternion.Euler(forward ? spawn.forwardSpawnRotation : spawn.backwardSpawnRotation));
+        cam.fieldOfView = forward ? spawn.forwardFOV : spawn.backwardFOV;
     }
 
     [Serializable]
     public struct FixedCameraSpawnInfo {
 
-        public Collider spawnTrigger;
+        public GameObject spawnTrigger;
 
         public Vector3 forwardSpawnPosition;
 
         public Vector3 forwardSpawnRotation;
 
+        public float forwardFOV;
+
         public Vector3 backwardSpawnPosition;
 
         public Vector3 backwardSpawnRotation;
+
+        public float backwardFOV;
 
     }
 }
